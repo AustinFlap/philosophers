@@ -6,7 +6,7 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/06 19:24:39 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/06 19:45:27 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = sources/main.c \
 OBJ = $(SRCS:%.c=%.o)
 
 IFLAGS = ./includes/
-SRCSDIR = ./sources/
+SRCS_DIR = ./sources/
 
 START_STYLE = \033[1;32m
 END_STYLE = \033[0m

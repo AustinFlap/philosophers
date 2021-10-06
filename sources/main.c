@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/06 19:37:56 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/06 19:41:52 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@ int				fill_input(char **args, t_input *input)
 		input->nb_mandatory_eats = ft_atoi_of_pos(args[5]);
 	else
 		input->nb_mandatory_eats = 0;
-
-	
-	printf("nb_philos         : %d\n",input->nb_philos);
-	printf("time_to_die       : %d\n",input->time_to_die);
-	printf("time_to_eat       : %d\n",input->time_to_eat);
-	printf("time_to_sleep     : %d\n",input->time_to_sleep);
-	printf("nb_mandatory_eats : %d\n",input->nb_mandatory_eats);
-
 	if (input->nb_philos == -1 || input->time_to_die == -1 ||
 					input->time_to_eat == -1 || input->time_to_sleep == -1 ||
 												input->nb_mandatory_eats == -1)
