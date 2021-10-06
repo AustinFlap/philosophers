@@ -6,7 +6,7 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/06 18:54:03 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/06 19:24:39 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
-SRCS = sources/main.c
+SRCS = sources/main.c \
+		sources/utils/ft_atoi_of_pos.c
 
 OBJ = $(SRCS:%.c=%.o)
 
