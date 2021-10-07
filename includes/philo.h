@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/06 19:19:01 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/07 23:32:15 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,38 @@
 
 # define MAX_INT 2147483647
 
-typedef struct	s_input
+typedef	enum			e_action
 {
-	int			nb_philos;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			nb_mandatory_eats;
+						null,
+						eat,
+						rest,
+						think,
+						death,
+}						t_action;
 
-}				t_input;
+typedef	struct			s_philo
+{
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		lock;
 
-int				ft_atoi_of_pos(const char *nptr);
+}						t_philo;
+
+
+typedef struct			s_simulation
+{
+	int					nb_philos;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					nb_mandatory_eats;
+	pthread_mutex_t		*forks;
+	pthread_mutex_t		lock;
+	t_philo				**philos;
+
+}						t_simulation;
+
+int						ft_atoi_of_pos(const char *nptr);
+void					create_simulation(t_simulation *simulation);
 
 #endif
