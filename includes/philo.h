@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/10 14:28:37 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/10 14:40:06 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef	enum			e_action
 typedef	struct			s_philo
 {
 	int					id;
+	int					nb_meal;
+	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 
