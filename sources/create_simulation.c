@@ -6,24 +6,43 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/07 23:34:27 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/10 14:34:59 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void				create_simulation(t_simulation *simulation)
+t_philo	*get_philo(int id, pthread_mutex_t *forks, int nb_philos)
 {
-	int				i;
+	t_philo	*philo;
 
-	if (!(*simulation->philos = malloc(sizeof(t_philo *) * simulation->nb_philos)))
-		return ;
-	if (!(simulation->forks = malloc(sizeof(pthread_mutex_t) * simulation->nb_philos)))
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
+		return (NULL);
+	philo->id = id;
+	philo->left_fork = &forks[id];
+	if (id != nb_philos - 1)
+		philo->right_fork = &forks[id + 1];
+	else
+		philo->right_fork = &forks[0];
+	return (philo);
+}
+
+void	create_simulation(t_simulation *simulation)
+{
+	int	i;
+
+	simulation->philos = malloc(sizeof(t_philo *) * simulation->nb_philos);
+	simulation->forks = malloc(sizeof(pthread_mutex_t) * simulation->nb_philos);
+	if (!simulation->philos || !*simulation->philos || !simulation->forks)
 		return ;
 	i = -1;
 	while (++i < simulation->nb_philos)
-		pthread_mutex_init(forks[i], NULL); 
+	{
+		simulation->philos[i] = get_philo(i, simulation->forks, simulation->nb_philos);
+		pthread_mutex_init(&simulation->forks[i], NULL); 
+	}
 	i = -1;
-	while (++i < simulation->nb_philos)
-		pthread_create(philos[i], NULL, -----, forks); 
+	//while (++i < simulation->nb_philos)
+	//	pthread_create(simulation->philos[i], NULL, -----, forks); 
 }
