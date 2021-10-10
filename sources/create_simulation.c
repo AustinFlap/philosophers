@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/10 14:40:35 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/10 14:45:24 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,4 @@ void	create_simulation(t_simulation *simulation)
 			return ;//FREE
 		pthread_mutex_init(&simulation->forks[i], NULL); 
 	}
-	i = -1;
-	//while (++i < simulation->nb_philos)
-	//	pthread_create(simulation->philos[i], NULL, -----, forks); 
 }

@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/07 22:38:32 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/10 14:48:09 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ int				main(int ac, char **args)
 	if (fill_input(args, &simulation))
 		return (0);
 	create_simulation(&simulation);
+	launch_simulation(&simulation);
 }

@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/10 14:40:06 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/10 14:48:21 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ typedef struct			s_simulation
 
 int						ft_atoi_of_pos(const char *nptr);
 void					create_simulation(t_simulation *simulation);
+void					launch_simulation(t_simulation *simulation);
 
 #endif
