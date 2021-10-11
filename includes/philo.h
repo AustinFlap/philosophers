@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/10 14:48:21 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/11 20:24:23 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ typedef	enum			e_action
 typedef	struct			s_philo
 {
 	int					id;
-	int					nb_meal;
+	int					nb_eat;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		*lock;
 
 }						t_philo;
 
@@ -57,5 +61,8 @@ typedef struct			s_simulation
 int						ft_atoi_of_pos(const char *nptr);
 void					create_simulation(t_simulation *simulation);
 void					launch_simulation(t_simulation *simulation);
+void					destroy_simulation(t_simulation *simulation);
+void					usleep_ms(int ms);
+
 
 #endif
