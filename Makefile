@@ -6,14 +6,14 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/10 14:47:09 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/11 16:46:47 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -pthread -Wall -Wextra -Werror
 
 RM = rm -rf
 

@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/10 14:45:24 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/11 17:46:24 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	create_simulation(t_simulation *simulation)
 
 	simulation->philos = malloc(sizeof(t_philo *) * simulation->nb_philos);
 	simulation->forks = malloc(sizeof(pthread_mutex_t) * simulation->nb_philos);
-	if (!simulation->philos || !*simulation->philos || !simulation->forks)
+	if (!simulation->philos || !simulation->forks)
 		return ;//FREE
 	i = -1;
 	while (++i < simulation->nb_philos)

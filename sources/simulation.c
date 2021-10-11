@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/10 15:01:36 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/11 17:47:22 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void	launch_simulation(t_simulation *simulation)
 	int	i;
 
 	i = -1;
-	printf("Before launch\n");
-	while (i < simulation->nb_philos)
-		pthread_create(&(simulation->philos[i]->thread), NULL, &live, simulation->philos[i]);
-	printf("After launch\n");
+	while (++i < simulation->nb_philos)
+		pthread_create(&simulation->philos[i]->thread, NULL, live, simulation->philos[i]);
+	i = -1;
+	while (++i < simulation->nb_philos)
+		pthread_join(simulation->philos[i]->thread, NULL);
 }
