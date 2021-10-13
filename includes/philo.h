@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/11 20:24:23 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 03:21:11 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct			s_simulation
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_mandatory_eats;
+	pthread_mutex_t		lock;
 	pthread_mutex_t		*forks;
 	t_philo				**philos;
 
@@ -63,6 +64,7 @@ void					create_simulation(t_simulation *simulation);
 void					launch_simulation(t_simulation *simulation);
 void					destroy_simulation(t_simulation *simulation);
 void					usleep_ms(int ms);
-
+void					ft_putnbr_fd(int n, int fd);
+void					print_msg(int id, char *state, pthread_mutex_t *lock);
 
 #endif

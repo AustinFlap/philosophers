@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/11 21:05:26 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 03:28:34 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,24 @@ t_philo	*get_philo(int id, pthread_mutex_t *forks, int nb_philos)
 void	create_simulation(t_simulation *simulation)
 {
 	int	i;
-	pthread_mutex_t lock;
 
 	simulation->philos = malloc(sizeof(t_philo *) * simulation->nb_philos);
 	simulation->forks = malloc(sizeof(pthread_mutex_t) * simulation->nb_philos);
 	if (!simulation->philos || !simulation->forks)
 		return ;//FREE
 	i = -1;
-	pthread_mutex_init(&lock, NULL);
 	while (++i < simulation->nb_philos)
 	{
 		simulation->philos[i] = get_philo(i + 1, simulation->forks, simulation->nb_philos);
 		if (!simulation->philos[i])
 			return ;//FREE
-		simulation->philos[i]->lock = &lock;
+		simulation->philos[i]->lock = &simulation->lock;
 		simulation->philos[i]->time_to_eat = simulation->time_to_eat;
 		simulation->philos[i]->time_to_sleep = simulation->time_to_sleep;
 		simulation->philos[i]->time_to_die = simulation->time_to_die;
 		pthread_mutex_init(&simulation->forks[i], NULL); 
 	}
+	pthread_mutex_init(&simulation->lock, NULL);
 }
 
 void	destroy_simulation(t_simulation *simulation)

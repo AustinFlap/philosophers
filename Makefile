@@ -6,7 +6,7 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/11 20:09:09 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/12 04:28:50 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS = sources/main.c \
 		sources/utils/ft_atoi_of_pos.c \
 		sources/create_simulation.c \
 		sources/simulation.c \
-		sources/utils/time.c
+		sources/utils/time.c \
+		sources/utils/ft_putnbr_fd.c \
+		sources/utils/display.c
 
 OBJ = $(SRCS:%.c=%.o)
 
