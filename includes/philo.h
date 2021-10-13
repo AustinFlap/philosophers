@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 03:21:11 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 04:10:20 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef	struct			s_philo
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
+	struct timeval		birth;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
@@ -65,6 +66,6 @@ void					launch_simulation(t_simulation *simulation);
 void					destroy_simulation(t_simulation *simulation);
 void					usleep_ms(int ms);
 void					ft_putnbr_fd(int n, int fd);
-void					print_msg(int id, char *state, pthread_mutex_t *lock);
+void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
 
 #endif

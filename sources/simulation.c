@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 03:53:10 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 04:10:08 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	philo_eat(t_philo *philo)
 
 	pthread_mutex_lock(philo->lock);
 	pthread_mutex_lock(philo->left_fork);
-	print_msg(philo->id, " has taken a fork\n", NULL);
+	print_msg(philo, " has taken a fork\n", NULL);
 	pthread_mutex_lock(philo->right_fork);
-	print_msg(philo->id, " has taken a fork\n", NULL);
-	print_msg(philo->id, " is eating\n", NULL);
+	print_msg(philo, " has taken a fork\n", NULL);
+	print_msg(philo, " is eating\n", NULL);
 	pthread_mutex_unlock(philo->lock);
 	usleep_ms(philo->time_to_eat);
 	philo->nb_eat++;
@@ -30,13 +30,13 @@ void	philo_eat(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
-	print_msg(philo->id, " is sleeping\n", philo->lock);
+	print_msg(philo, " is sleeping\n", philo->lock);
 	usleep_ms(philo->time_to_sleep);
 }
 
 void	philo_think(t_philo *philo)
 {
-	print_msg(philo->id, " is thinking\n", philo->lock);
+	print_msg(philo, " is thinking\n", philo->lock);
 }
 
 void	*live(void *p_philo)
@@ -60,7 +60,7 @@ void	launch_simulation(t_simulation *simulation)
 	i = -1;
 	while (++i < simulation->nb_philos)
 	{
-		//usleep(10);
+		settimeofday(&simulation->philos[i]->birth, NULL);
 		pthread_create(&simulation->philos[i]->thread, NULL, live, simulation->philos[i]);
 	}
 	i = -1;
