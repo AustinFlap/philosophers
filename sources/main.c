@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/11 18:02:29 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 12:30:20 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int				invalid_input(int	n, char **args)
 
 int				fill_input(char **args, t_simulation *simulation)
 {
-	simulation->nb_philos = ft_atoi_of_pos(args[1]);
-	simulation->time_to_die = ft_atoi_of_pos(args[2]);
-	simulation->time_to_eat = ft_atoi_of_pos(args[3]);
-	simulation->time_to_sleep = ft_atoi_of_pos(args[4]);
+	simulation->nb_philos = ft_atoi_of(args[1]);
+	simulation->time_to_die = ft_atoi_of(args[2]);
+	simulation->time_to_eat = ft_atoi_of(args[3]);
+	simulation->time_to_sleep = ft_atoi_of(args[4]);
 	if (args[5])
-		simulation->nb_mandatory_eats = ft_atoi_of_pos(args[5]);
+		simulation->nb_mandatory_eats = ft_atoi_of(args[5]);
 	else
 		simulation->nb_mandatory_eats = 0;
 	if (simulation->nb_philos == -1 || simulation->time_to_die == -1 ||

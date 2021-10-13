@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 04:10:08 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 14:14:46 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ void	launch_simulation(t_simulation *simulation)
 {
 	int	i;
 
+	gettimeofday(&simulation->start, NULL);
 	i = -1;
 	while (++i < simulation->nb_philos)
 	{
-		settimeofday(&simulation->philos[i]->birth, NULL);
+		simulation->philos[i]->birth = &simulation->start;
 		pthread_create(&simulation->philos[i]->thread, NULL, live, simulation->philos[i]);
 	}
 	i = -1;

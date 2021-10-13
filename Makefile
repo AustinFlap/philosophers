@@ -6,7 +6,7 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/12 04:28:50 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/13 12:32:50 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -pthread -Wall -Wextra -Werror
 RM = rm -rf
 
 SRCS = sources/main.c \
-		sources/utils/ft_atoi_of_pos.c \
+		sources/utils/ft_atoi_of.c \
 		sources/create_simulation.c \
 		sources/simulation.c \
 		sources/utils/time.c \

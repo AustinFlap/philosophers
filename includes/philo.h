@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 04:10:20 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 14:17:04 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef	struct			s_philo
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	struct timeval		birth;
+	struct timeval		*birth;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
@@ -54,18 +54,21 @@ typedef struct			s_simulation
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_mandatory_eats;
+	struct timeval		start;
 	pthread_mutex_t		lock;
 	pthread_mutex_t		*forks;
 	t_philo				**philos;
 
 }						t_simulation;
 
-int						ft_atoi_of_pos(const char *nptr);
+int						ft_atoi_of(const char *nptr);
 void					create_simulation(t_simulation *simulation);
 void					launch_simulation(t_simulation *simulation);
 void					destroy_simulation(t_simulation *simulation);
 void					usleep_ms(int ms);
-void					ft_putnbr_fd(int n, int fd);
+void					ft_putnbr_fd(unsigned int n, int fd);
 void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
+int						ft_strlen(char *str);
+unsigned int						ms_since(struct timeval start);
 
 #endif

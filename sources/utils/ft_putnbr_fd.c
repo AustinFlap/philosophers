@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 20..//10 16:45:14 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/12 04:23:15 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/13 13:58:21 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	ft_putc_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(unsigned int n, int fd)
 {
-	long int	nb;
+	unsigned long int	nb;
 
 	nb = n;
 	if (nb < 0)
