@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 14:17:04 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/14 03:19:33 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,17 @@ typedef	struct			s_philo
 {
 	int					id;
 	int					nb_eat;
+	int					eating;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
 	struct timeval		*birth;
+	struct timeval		last_eat;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*lock;
+	int					*end;
 
 }						t_philo;
 
@@ -54,6 +57,7 @@ typedef struct			s_simulation
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_mandatory_eats;
+	int					end;
 	struct timeval		start;
 	pthread_mutex_t		lock;
 	pthread_mutex_t		*forks;

@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 03:28:34 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/14 03:39:02 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_philo	*get_philo(int id, pthread_mutex_t *forks, int nb_philos)
 		return (NULL);
 	philo->id = id;
 	philo->nb_eat = 0;
+	philo->eating = 0;
+	philo->end = 0;
 	philo->left_fork = &forks[id - 1];
 	if (id != nb_philos)
 		philo->right_fork = &forks[id];
@@ -43,6 +45,7 @@ void	create_simulation(t_simulation *simulation)
 		simulation->philos[i] = get_philo(i + 1, simulation->forks, simulation->nb_philos);
 		if (!simulation->philos[i])
 			return ;//FREE
+		simulation->philos[i]->end = &simulation->end;
 		simulation->philos[i]->lock = &simulation->lock;
 		simulation->philos[i]->time_to_eat = simulation->time_to_eat;
 		simulation->philos[i]->time_to_sleep = simulation->time_to_sleep;
