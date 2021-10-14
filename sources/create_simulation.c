@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/14 03:39:02 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/14 12:53:26 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@ t_philo	*get_philo(int id, pthread_mutex_t *forks, int nb_philos)
 	t_philo	*philo;
 
 	philo = malloc(sizeof(t_philo));
+	philo->eating = malloc(sizeof(int));
 	if (!philo)
+		return (NULL);
+	if (!philo->eating)
 		return (NULL);
 	philo->id = id;
 	philo->nb_eat = 0;
-	philo->eating = 0;
+	*philo->eating = 0;
 	philo->end = 0;
 	philo->left_fork = &forks[id - 1];
 	if (id != nb_philos)

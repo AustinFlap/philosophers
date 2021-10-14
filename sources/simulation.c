@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/14 04:02:22 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/14 12:58:37 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	philo_eat(t_philo *philo)
 {
-
 	pthread_mutex_lock(philo->lock);
 	pthread_mutex_lock(philo->left_fork);
 	print_msg(philo, " has taken a fork\n", NULL);
 	pthread_mutex_lock(philo->right_fork);
-	philo->eating = 1;
+	*philo->eating = 1;
 	print_msg(philo, " has taken a fork\n", NULL);
 	print_msg(philo, " is eating\n", NULL);
 	pthread_mutex_unlock(philo->lock);
@@ -28,7 +27,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	gettimeofday(&philo->last_eat, NULL);
-	philo->eating = 0;
+	*philo->eating = 0;
 }
 
 void	philo_sleep(t_philo *philo)
@@ -49,7 +48,7 @@ void	*observer(void *p_philo)
 	philo = p_philo;
 	while (!*philo->end)
 	{
-		if (ms_since(philo->last_eat) > (unsigned int)philo->time_to_die && !philo->eating)
+		if (ms_since(philo->last_eat) > (unsigned int)philo->time_to_die && !*philo->eating)
 		{
 			*philo->end = 1;
 			print_msg(philo, " died\n", philo->lock);

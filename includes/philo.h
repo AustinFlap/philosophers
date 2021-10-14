@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/14 03:19:33 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/14 12:52:09 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef	struct			s_philo
 {
 	int					id;
 	int					nb_eat;
-	int					eating;
+	int					*eating;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
