@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 12:30:20 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/18 20:54:23 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,26 @@ int				invalid_input(int	n, char **args)
 	return (1);
 }
 
-int				fill_input(char **args, t_simulation *simulation)
+int				fill_input(char **args, t_dinner *dinner)
 {
-	simulation->nb_philos = ft_atoi_of(args[1]);
-	simulation->time_to_die = ft_atoi_of(args[2]);
-	simulation->time_to_eat = ft_atoi_of(args[3]);
-	simulation->time_to_sleep = ft_atoi_of(args[4]);
+	dinner->nb_philos = ft_atoi_of(args[1]);
+	dinner->time_to_die = ft_atoi_of(args[2]);
+	dinner->time_to_eat = ft_atoi_of(args[3]);
+	dinner->time_to_sleep = ft_atoi_of(args[4]);
 	if (args[5])
-		simulation->nb_mandatory_eats = ft_atoi_of(args[5]);
+		dinner->nb_mandatory_eats = ft_atoi_of(args[5]);
 	else
-		simulation->nb_mandatory_eats = 0;
-	if (simulation->nb_philos == -1 || simulation->time_to_die == -1 ||
-					simulation->time_to_eat == -1 || simulation->time_to_sleep == -1 ||
-												simulation->nb_mandatory_eats == -1)
+		dinner->nb_mandatory_eats = 0;
+	if (dinner->nb_philos == -1 || dinner->time_to_die == -1 ||
+					dinner->time_to_eat == -1 || dinner->time_to_sleep == -1 ||
+												dinner->nb_mandatory_eats == -1)
 	{
 		printf("Int overflow arguments\n");
 		return (1);
 	}
-	else if (simulation->nb_philos < 2)
+	else if (dinner->nb_philos < 2)
 	{
-		printf("At least 2 philosophers needed\n");
+		printf("At least 2 philosophers\n");
 		return (1);
 	}
 	return (0);
@@ -63,13 +63,13 @@ int				fill_input(char **args, t_simulation *simulation)
 
 int				main(int ac, char **args)
 {
-	t_simulation		simulation;
+	t_dinner		dinner;
 
 	if(invalid_input(ac - 1, args))
 		return (0);
-	if (fill_input(args, &simulation))
+	if (fill_input(args, &dinner))
 		return (0);
-	create_simulation(&simulation);
-	launch_simulation(&simulation);
-	destroy_simulation(&simulation);
+	create_dinner(&dinner);
+	launch_dinner(&dinner);
+	destroy_dinner(&dinner);
 }

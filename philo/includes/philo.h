@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/14 12:52:09 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/18 21:32:31 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,55 +24,57 @@
 
 typedef	enum			e_action
 {
-						null,
-						eat,
-						rest,
-						think,
-						death,
+						eating,
+						sleeping,
+						thinking,
+						dead,
 }						t_action;
 
 typedef	struct			s_philo
 {
 	int					id;
 	int					nb_eat;
-	int					*eating;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
-	struct timeval		*birth;
+	int					nb_mandatory_eats;
 	struct timeval		last_eat;
+	struct timeval		birth;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*lock;
-	int					*end;
+	int					*dinning;
+	t_action			*action;
 
 }						t_philo;
 
 
-typedef struct			s_simulation
+typedef struct			s_dinner
 {
 	int					nb_philos;
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_mandatory_eats;
-	int					end;
+	int					dinning;
 	struct timeval		start;
 	pthread_mutex_t		lock;
 	pthread_mutex_t		*forks;
 	t_philo				**philos;
 
-}						t_simulation;
+}						t_dinner;
 
 int						ft_atoi_of(const char *nptr);
-void					create_simulation(t_simulation *simulation);
-void					launch_simulation(t_simulation *simulation);
-void					destroy_simulation(t_simulation *simulation);
+void					create_dinner(t_dinner *dinner);
+void					launch_dinner(t_dinner *dinner);
+void					destroy_dinner(t_dinner *dinner);
 void					usleep_ms(int ms);
 void					ft_putnbr_fd(unsigned int n, int fd);
 void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
 int						ft_strlen(char *str);
-unsigned int						ms_since(struct timeval start);
+unsigned int			ms_since(struct timeval start);
+void					*live(void *p_philo);
+void					*observer(void *p_philo);
 
 #endif

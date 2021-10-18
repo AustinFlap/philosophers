@@ -6,7 +6,7 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/13 12:32:50 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/18 21:05:01 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,12 @@ RM = rm -rf
 
 SRCS = sources/main.c \
 		sources/utils/ft_atoi_of.c \
-		sources/create_simulation.c \
-		sources/simulation.c \
+		sources/create_dinner.c \
+		sources/dinner.c \
 		sources/utils/time.c \
 		sources/utils/ft_putnbr_fd.c \
-		sources/utils/display.c
+		sources/utils/display.c \
+		sources/philos.c
 
 OBJ = $(SRCS:%.c=%.o)
 
