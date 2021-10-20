@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/18 20:54:23 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 23:06:02 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				fill_input(char **args, t_dinner *dinner)
 	if (args[5])
 		dinner->nb_mandatory_eats = ft_atoi_of(args[5]);
 	else
-		dinner->nb_mandatory_eats = 0;
+		dinner->nb_mandatory_eats = -2;
 	if (dinner->nb_philos == -1 || dinner->time_to_die == -1 ||
 					dinner->time_to_eat == -1 || dinner->time_to_sleep == -1 ||
 												dinner->nb_mandatory_eats == -1)

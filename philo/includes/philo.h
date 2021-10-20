@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/20 22:22:43 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 23:16:05 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int						ft_strlen(char *str);
 unsigned int			ms_since(struct timeval start);
 void					*live(void *p_philo);
 void					*observer(void *p_philo);
+int						eval_meal(t_philo *philo);
 
 #endif

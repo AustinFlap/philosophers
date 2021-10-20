@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/20 22:30:47 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 23:15:43 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	philo_eat(t_philo *philo)
 	print_msg(philo, " has taken a fork\n", philo->lock_print);
 	*philo->action = eating;
 	print_msg(philo, " is eating\n", philo->lock_print);
+	gettimeofday(&philo->last_eat, NULL);
 	pthread_mutex_unlock(philo->lock);
 	usleep_ms(philo->time_to_eat, philo);
 	philo->nb_eat++;
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
-	gettimeofday(&philo->last_eat, NULL);
 }
 
 void	philo_sleep(t_philo *philo)
@@ -68,7 +68,7 @@ void	*live(void *p_philo)
 	philo = p_philo;
 	pthread_create(&obs, NULL, observer, p_philo);
 	pthread_detach(obs);
-	while (!*philo->dinning)
+	while (!*philo->dinning && eval_meal(philo))
 	{
 		if (!*philo->dinning)
 			philo_eat(philo);

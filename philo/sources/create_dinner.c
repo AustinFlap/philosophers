@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/20 22:12:17 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 23:09:19 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	create_dinner(t_dinner *dinner)
 		dinner->philos[i]->time_to_eat = dinner->time_to_eat;
 		dinner->philos[i]->time_to_sleep = dinner->time_to_sleep;
 		dinner->philos[i]->time_to_die = dinner->time_to_die;
+		dinner->philos[i]->nb_mandatory_eats = dinner->nb_mandatory_eats;
 		pthread_mutex_init(&dinner->forks[i], NULL); 
 	}
 	pthread_mutex_init(&dinner->lock, NULL);
