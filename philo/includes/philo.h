@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/18 21:32:31 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 22:22:43 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <pthread.h>
 
 # define MAX_INT 2147483647
+# define SLICE_SLEEP 1
 
 typedef	enum			e_action
 {
@@ -44,6 +45,7 @@ typedef	struct			s_philo
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	pthread_mutex_t		*lock;
+	pthread_mutex_t		*lock_print;
 	int					*dinning;
 	t_action			*action;
 
@@ -60,6 +62,7 @@ typedef struct			s_dinner
 	int					dinning;
 	struct timeval		start;
 	pthread_mutex_t		lock;
+	pthread_mutex_t		lock_print;
 	pthread_mutex_t		*forks;
 	t_philo				**philos;
 
@@ -69,7 +72,7 @@ int						ft_atoi_of(const char *nptr);
 void					create_dinner(t_dinner *dinner);
 void					launch_dinner(t_dinner *dinner);
 void					destroy_dinner(t_dinner *dinner);
-void					usleep_ms(int ms);
+void					usleep_ms(int ms, t_philo *philo);
 void					ft_putnbr_fd(unsigned int n, int fd);
 void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
 int						ft_strlen(char *str);

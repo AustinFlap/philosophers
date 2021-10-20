@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/18 21:54:05 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 22:26:40 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	*observer(void *p_philo)
 	{
 		if (ms_since(philo->last_eat) > (unsigned int)philo->time_to_die && *philo->action != eating && !*philo->dinning)
 		{
-			printf("%d philo : %d last_eat was %u ms ago\n", ms_since(philo->birth), philo->id, ms_since(philo->last_eat));
+			//printf("%d philo : %d last_eat was %u ms ago\n", ms_since(philo->birth), philo->id, ms_since(philo->last_eat));
 			*philo->dinning = 1;
-			print_msg(philo, " died\n", philo->lock);
+			print_msg(philo, " died\n", philo->lock_print);
 		}
 		usleep(500);
 	}

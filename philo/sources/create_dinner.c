@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/18 21:23:19 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/20 22:12:17 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	create_dinner(t_dinner *dinner)
 			return ;//FREE
 		dinner->philos[i]->dinning = &dinner->dinning;
 		dinner->philos[i]->lock = &dinner->lock;
+		dinner->philos[i]->lock_print = &dinner->lock_print;
 		dinner->philos[i]->time_to_eat = dinner->time_to_eat;
 		dinner->philos[i]->time_to_sleep = dinner->time_to_sleep;
 		dinner->philos[i]->time_to_die = dinner->time_to_die;
