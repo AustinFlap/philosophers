@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/20 23:09:19 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/21 04:08:27 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,24 @@ t_philo	*get_philo(int id, pthread_mutex_t *forks, int nb_philos)
 	if (!philo || !philo->action)
 		return (NULL);
 	philo->id = id;
-	philo->nb_eat = 0;
-	philo->left_fork = &forks[id - 1];
 	*philo->action = thinking;
-	if (id != nb_philos)
-		philo->right_fork = &forks[id];
+	philo->nb_eat = 0;
+	if (1)
+	{
+		philo->left_fork = &forks[id - 1];
+		if (id == nb_philos)
+			philo->right_fork = &forks[0];
+		else
+			philo->right_fork = &forks[id];
+	}
 	else
-		philo->right_fork = &forks[0];
+	{
+		philo->right_fork = &forks[id - 1];
+		if (id == nb_philos)
+			philo->left_fork = &forks[0];
+		else
+			philo->left_fork = &forks[id];
+	}
 	return (philo);
 }
 

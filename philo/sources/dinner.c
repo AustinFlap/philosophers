@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 01:39:17 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/21 11:10:01 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	launch_dinner(t_dinner *dinner)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	gettimeofday(&dinner->start, NULL);
 	while (i < dinner->nb_philos)
 	{
@@ -51,7 +51,7 @@ void	launch_dinner(t_dinner *dinner)
 		pthread_create(&dinner->philos[i]->thread, NULL, live, dinner->philos[i]);
 		i += 2;
 	}
-	i = 1;
+	i = 0;
 	usleep(10);
 	while (i < dinner->nb_philos)
 	{
