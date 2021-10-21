@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/20 23:06:02 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/21 00:02:43 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ int				fill_input(char **args, t_dinner *dinner)
 												dinner->nb_mandatory_eats == -1)
 	{
 		printf("Int overflow arguments\n");
-		return (1);
-	}
-	else if (dinner->nb_philos < 2)
-	{
-		printf("At least 2 philosophers\n");
 		return (1);
 	}
 	return (0);

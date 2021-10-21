@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/20 23:16:05 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/21 01:34:56 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef	struct			s_philo
 	int					time_to_sleep;
 	int					nb_mandatory_eats;
 	struct timeval		last_eat;
+	struct timeval		end_eat;
 	struct timeval		birth;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
@@ -72,7 +73,7 @@ int						ft_atoi_of(const char *nptr);
 void					create_dinner(t_dinner *dinner);
 void					launch_dinner(t_dinner *dinner);
 void					destroy_dinner(t_dinner *dinner);
-void					usleep_ms(int ms, t_philo *philo);
+void					usleep_ms(int ms, t_philo *philo, struct timeval *last_eat);
 void					ft_putnbr_fd(unsigned int n, int fd);
 void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
 int						ft_strlen(char *str);
