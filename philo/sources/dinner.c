@@ -6,28 +6,28 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 11:10:01 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/22 14:42:32 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	*observer(void *p_philo)
+void	observer(t_dinner *dinner)
 {
-	t_philo	*philo;
+	int i;
+	t_philo *philo;
 
-	philo = p_philo;
-	while (!*philo->dinning)
+	i = -1;
+	while (!dinner->dinning && ++i < dinner->nb_philos)
 	{
+		philo = dinner->philos[i];
 		if (ms_since(philo->last_eat) > (unsigned int)philo->time_to_die && *philo->action != eating && !*philo->dinning)
 		{
-			//printf("%d philo : %d last_eat was %u ms ago\n", ms_since(philo->birth), philo->id, ms_since(philo->last_eat));
 			*philo->dinning = 1;
 			print_msg(philo, " died\n", philo->lock_print);
 		}
-		usleep(1000);
+		usleep(5);
 	}
-	return (NULL);
 }
 
 int		eval_meal(t_philo *philo)
@@ -52,7 +52,7 @@ void	launch_dinner(t_dinner *dinner)
 		i += 2;
 	}
 	i = 0;
-	usleep(10);
+	usleep(450);
 	while (i < dinner->nb_philos)
 	{
 		dinner->philos[i]->birth = dinner->start;
@@ -60,6 +60,8 @@ void	launch_dinner(t_dinner *dinner)
 		pthread_create(&dinner->philos[i]->thread, NULL, live, dinner->philos[i]);
 		i += 2;
 	}
+	while (!dinner->dinning)
+		observer(dinner);
 	i = -1;
 	while (++i < dinner->nb_philos)
 		pthread_join(dinner->philos[i]->thread, NULL);

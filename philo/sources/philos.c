@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 11:27:18 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/22 14:34:35 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,8 @@ void	philo_think(t_philo *philo)
 void	*live(void *p_philo)
 {
 	t_philo	*philo;
-	pthread_t	obs;
 
 	philo = p_philo;
-	pthread_create(&obs, NULL, observer, p_philo);
-	pthread_detach(obs);
 	while (!*philo->dinning && eval_meal(philo))
 	{
 		if (!*philo->dinning)

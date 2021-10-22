@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 04:08:27 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/22 13:19:17 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	create_dinner(t_dinner *dinner)
 		pthread_mutex_init(&dinner->forks[i], NULL); 
 	}
 	pthread_mutex_init(&dinner->lock, NULL);
+	pthread_mutex_init(&dinner->lock_print, NULL);
 }
 
 void	destroy_dinner(t_dinner *dinner)

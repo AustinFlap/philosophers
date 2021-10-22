@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 01:34:56 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/22 14:38:57 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
 int						ft_strlen(char *str);
 unsigned int			ms_since(struct timeval start);
 void					*live(void *p_philo);
-void					*observer(void *p_philo);
 int						eval_meal(t_philo *philo);
 
 #endif
