@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/23 13:50:49 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/23 14:02:14 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	launch_dinner(t_dinner *dinner)
 	int	i;
 	pthread_t obs;
 
-	i = 0;
+	i = 1;
 	gettimeofday(&dinner->start, NULL);
 	while (i < dinner->nb_philos)
 	{
@@ -59,7 +59,7 @@ void	launch_dinner(t_dinner *dinner)
 		pthread_create(&dinner->philos[i]->thread, NULL, live, dinner->philos[i]);
 		i += 2;
 	}
-	i = 1;
+	i = 0;
 	usleep(500);
 	while (i < dinner->nb_philos)
 	{
