@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:05:56 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 11:20:16 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/23 13:22:09 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	usleep_ms(int ms, t_philo *philo, struct timeval *start)
 		gettimeofday(start, NULL);
 	}
 	while (ms_since(*start) < (unsigned int)ms && !*philo->dinning)
-		usleep(100);
+		usleep(500);
 }
 
 unsigned int	ms_since(struct timeval start)

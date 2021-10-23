@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/22 14:34:35 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/23 11:33:32 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	philo_eat(t_philo *philo)
 	usleep_ms(philo->time_to_eat, philo, &philo->last_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
-	gettimeofday(&philo->end_eat, NULL);
 	philo->nb_eat++;
 }
 
@@ -61,6 +60,7 @@ void	philo_sleep(t_philo *philo)
 {
 	*philo->action = sleeping;
 	print_msg(philo, " is sleeping\n", philo->lock_print);
+	gettimeofday(&philo->end_eat, NULL);
 	usleep_ms(philo->time_to_sleep, philo, &philo->end_eat);
 }
 
@@ -77,11 +77,11 @@ void	*live(void *p_philo)
 	philo = p_philo;
 	while (!*philo->dinning && eval_meal(philo))
 	{
-		if (!*philo->dinning)
+		if (!*philo->dinning && eval_meal(philo))
 			philo_eat(philo);
-		if (!*philo->dinning)
+		if (!*philo->dinning && eval_meal(philo))
 			philo_sleep(philo);
-		if (!*philo->dinning)
+		if (!*philo->dinning && eval_meal(philo))
 			philo_think(philo);
 	}
 	return (NULL);
