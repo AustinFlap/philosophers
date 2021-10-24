@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/23 12:06:10 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/24 12:50:57 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef	enum			e_action
 typedef	struct			s_philo
 {
 	int					id;
+	int					nb_philos;
 	int					nb_eat;
 	int					time_to_die;
 	int					time_to_eat;
