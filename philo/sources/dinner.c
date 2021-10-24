@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/24 14:08:34 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/24 14:22:44 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	launch_dinner(t_dinner *dinner)
 		i += 2;
 	}
 	i = 0;
-	usleep(1500);
+	usleep(500);
 	while (i < dinner->nb_philos)
 	{
 		dinner->philos[i]->birth = dinner->start;
