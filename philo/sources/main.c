@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:41:37 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/21 00:02:43 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/25 21:47:06 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ int				main(int ac, char **args)
 		return (0);
 	if (fill_input(args, &dinner))
 		return (0);
-	create_dinner(&dinner);
-	launch_dinner(&dinner);
-	destroy_dinner(&dinner);
+	if (!create_dinner(&dinner))
+	{
+		launch_dinner(&dinner);
+		destroy_dinner(&dinner);
+	}
+	else
+		printf("Philosophers allocation failed\n");
 }

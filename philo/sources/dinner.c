@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/25 20:35:02 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 00:19:59 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,59 @@ void	*observer(void *p_dinner)
 	t_philo *philo;
 
 	dinner = p_dinner;
-	while (!dinner->dinning)
+	while (!get_dinning(dinner->philos[0]))
 	{
 		i = -1;
-		while (!dinner->dinning && ++i < dinner->nb_philos)
+		while (!get_dinning(dinner->philos[0]) && ++i < dinner->nb_philos)
 		{
 			philo = dinner->philos[i];
-			if (ms_since(philo->last_eat) > (unsigned int)philo->time_to_die && *philo->action != eating && !*philo->dinning)
+			if (ms_since(&philo->last_eat, philo->lock_time) > (unsigned int)philo->time_to_die && !get_dinning(philo) && !get_satisfaction(philo))
 			{
 				pthread_mutex_lock(philo->lock_print);
 				print_msg(philo, " died\n", NULL);
-				*philo->dinning = 1;
+				set_no_dinning(philo->dinning, philo->lock_dinning);
 				pthread_mutex_unlock(philo->lock_print);
+				return (NULL);
 			}
 			usleep(1);
 		}
 	}
 	return (NULL);
+}
+
+
+void	set_yes_satisfaction(t_philo *philo)
+{
+	pthread_mutex_lock(philo->lock_dinning);
+	philo->satisfaction = 1;
+	pthread_mutex_unlock(philo->lock_dinning);
+}
+
+int	get_satisfaction(t_philo *philo)
+{
+	int tmp;
+
+	pthread_mutex_lock(philo->lock_dinning);
+	tmp = philo->satisfaction;
+	pthread_mutex_unlock(philo->lock_dinning);
+	return (tmp);
+}
+
+void	set_no_dinning(int *dinning, pthread_mutex_t *lock)
+{
+	pthread_mutex_lock(lock);
+	*dinning = 1;
+	pthread_mutex_unlock(lock);
+}
+
+int	get_dinning(t_philo *philo)
+{
+	int tmp;
+
+	pthread_mutex_lock(philo->lock_dinning);
+	tmp = *philo->dinning;
+	pthread_mutex_unlock(philo->lock_dinning);
+	return (tmp);
 }
 
 int		eval_meal(t_philo *philo)
@@ -69,8 +105,9 @@ void	launch_dinner(t_dinner *dinner)
 		i += 2;
 	}
 	pthread_create(&obs, NULL, observer, dinner);
-	pthread_detach(obs);
 	i = -1;
 	while (++i < dinner->nb_philos)
 		pthread_join(dinner->philos[i]->thread, NULL);
+	set_no_dinning(&dinner->dinning, &dinner->lock_dinning);
+	pthread_join(obs, NULL);
 }
