@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/24 14:07:01 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/25 21:02:22 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	death_test(t_philo *philo, pthread_mutex_t *right_fork, pthread_mutex_t *lef
 	}
 	else if (left_fork == right_fork)
 	{
-		*philo->dinning = 1;
 		while (ms_since(philo->last_eat) < (unsigned int)philo->time_to_die)
 			usleep_ms(1, philo, NULL);
 		print_msg(philo, " died\n", philo->lock_print);
+		*philo->dinning = 1;
 		return (1);
 	}
 	return (0);
@@ -79,6 +79,8 @@ void	*live(void *p_philo)
 	{
 		if (!*philo->dinning && eval_meal(philo))
 		{
+			if (philo->nb_philos % 2 && (int)ms_since(philo->last_eat) + philo->time_to_eat < philo->time_to_die)
+				usleep_ms(philo->time_to_eat, philo, NULL);
 			philo_eat(philo);
 		}
 		if (!*philo->dinning && eval_meal(philo))

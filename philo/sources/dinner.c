@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/24 14:22:44 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/25 20:35:02 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	*observer(void *p_dinner)
 			philo = dinner->philos[i];
 			if (ms_since(philo->last_eat) > (unsigned int)philo->time_to_die && *philo->action != eating && !*philo->dinning)
 			{
-				pthread_mutex_lock(philo->lock);
-				print_msg(philo, " died\n", philo->lock_print);
+				pthread_mutex_lock(philo->lock_print);
+				print_msg(philo, " died\n", NULL);
 				*philo->dinning = 1;
-				pthread_mutex_unlock(philo->lock);
+				pthread_mutex_unlock(philo->lock_print);
 			}
 			usleep(1);
 		}
