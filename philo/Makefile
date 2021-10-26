@@ -6,7 +6,7 @@
 #    By: avieira <avieira@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/06 18:20:01 by avieira           #+#    #+#              #
-#    Updated: 2021/10/26 00:25:53 by avieira          ###   ########.fr        #
+#    Updated: 2021/10/26 03:40:22 by avieira          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,13 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 
 SRCS = sources/main.c \
-		sources/utils/ft_atoi_of.c \
+		sources/ft_atoi.c \
 		sources/create_dinner.c \
 		sources/dinner.c \
-		sources/utils/time.c \
-		sources/utils/ft_putnbr_fd.c \
-		sources/utils/display.c \
-		sources/philos.c
+		sources/time.c \
+		sources/display.c \
+		sources/philos.c \
+		sources/set_get_philo_info.c
 
 OBJ = $(SRCS:%.c=%.o)
 

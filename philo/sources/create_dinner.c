@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 00:11:47 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 03:35:47 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,24 @@ t_philo	*get_philo(int id, pthread_mutex_t *forks, int nb_philos)
 	return (philo);
 }
 
+void	set_info(t_dinner *dinner, int i)
+{
+	dinner->philos[i]->nb_philos = dinner->nb_philos;
+	dinner->philos[i]->dinning = &dinner->dinning;
+	dinner->philos[i]->lock = &dinner->lock;
+	dinner->philos[i]->lock_print = &dinner->lock_print;
+	dinner->philos[i]->lock_time = &dinner->lock_time;
+	dinner->philos[i]->lock_dinning = &dinner->lock_dinning;
+	dinner->philos[i]->time_to_eat = dinner->time_to_eat;
+	dinner->philos[i]->time_to_sleep = dinner->time_to_sleep;
+	dinner->philos[i]->time_to_die = dinner->time_to_die;
+	dinner->philos[i]->nb_mandatory_eats = dinner->nb_mandatory_eats;
+}
+
 int	set_philos(t_dinner *dinner)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = -1;
@@ -62,17 +76,8 @@ int	set_philos(t_dinner *dinner)
 			free(dinner->forks);
 			return (1);
 		}
-		dinner->philos[i]->nb_philos = dinner->nb_philos;
-		dinner->philos[i]->dinning = &dinner->dinning;
-		dinner->philos[i]->lock = &dinner->lock;
-		dinner->philos[i]->lock_print = &dinner->lock_print;
-		dinner->philos[i]->lock_time = &dinner->lock_time;
-		dinner->philos[i]->lock_dinning = &dinner->lock_dinning;
-		dinner->philos[i]->time_to_eat = dinner->time_to_eat;
-		dinner->philos[i]->time_to_sleep = dinner->time_to_sleep;
-		dinner->philos[i]->time_to_die = dinner->time_to_die;
-		dinner->philos[i]->nb_mandatory_eats = dinner->nb_mandatory_eats;
-		pthread_mutex_init(&dinner->forks[i], NULL); 
+		set_info(dinner, i);
+		pthread_mutex_init(&dinner->forks[i], NULL);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 00:17:09 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 03:38:36 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <stdint.h>
 
-typedef	struct			s_philo
+typedef struct s_philo
 {
 	int					id;
 	int					nb_philos;
@@ -44,8 +44,7 @@ typedef	struct			s_philo
 	int					*dinning;
 }						t_philo;
 
-
-typedef struct			s_dinner
+typedef struct s_dinner
 {
 	int					nb_philos;
 	int					time_to_die;
@@ -63,13 +62,13 @@ typedef struct			s_dinner
 
 }						t_dinner;
 
-int						ft_atoi_of(const char *nptr);
-int					create_dinner(t_dinner *dinner);
+int						ft_atoi(const char *nptr);
+int						create_dinner(t_dinner *dinner);
 void					launch_dinner(t_dinner *dinner);
 void					destroy_dinner(t_dinner *dinner);
-void					usleep_ms(int ms, t_philo *philo, struct timeval *last_eat);
+void					usleep_ms(int ms, t_philo *p, struct timeval *last_eat);
 void					ft_putnbr_fd(unsigned int n, int fd);
-void					print_msg(t_philo *philo, char *state, pthread_mutex_t *lock);
+void					print_msg(t_philo *p, char *str, pthread_mutex_t *lock);
 int						ft_strlen(char *str);
 unsigned int			ms_since(struct timeval *start, pthread_mutex_t *lock);
 void					*live(void *p_philo);

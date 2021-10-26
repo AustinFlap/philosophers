@@ -6,13 +6,13 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 20:44:21 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/13 12:33:28 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 03:39:33 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "../includes/philo.h"
 
-int	ft_atoi_of(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	int					i;
 	int					neg;
