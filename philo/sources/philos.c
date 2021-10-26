@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 05:56:31 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:31:57 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	death_test(t_philo *philo, pthread_mutex_t *r_f, pthread_mutex_t *l_f)
 }
 
 void	philo_eat(t_philo *philo)
-{	
+{
 	pthread_mutex_lock(philo->lock);
 	pthread_mutex_lock(philo->right_fork);
 	if (death_test(philo, philo->right_fork, NULL))
@@ -52,20 +52,20 @@ void	philo_eat(t_philo *philo)
 	print_msg(philo, " is eating\n", philo->lock_print);
 	pthread_mutex_unlock(philo->lock);
 	get_time(&philo->last_eat, philo->lock_time);
-	usleep_ms(philo->time_to_eat, philo, NULL);
+	usleep_ms(philo->time_to_eat, philo, &philo->last_eat);
 	pthread_mutex_lock(philo->lock_print);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	print_msg(philo, " is sleeping\n", NULL);
+	pthread_mutex_unlock(philo->lock_print);
+	get_time(&philo->end_eat, philo->lock_time);
 	philo->nb_eat++;
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	print_msg(philo, " is sleeping\n", NULL);
 	eval_meal(philo);
-	pthread_mutex_unlock(philo->lock_print);
-	gettimeofday(&philo->end_eat, NULL);
-	usleep_ms(philo->time_to_sleep, philo, NULL);
+	usleep_ms(philo->time_to_sleep, philo, &philo->end_eat);
 }
 
 void	philo_think(t_philo *philo)
@@ -84,8 +84,6 @@ void	*live(void *p_philo)
 			philo_eat(philo);
 		if (!get_dinning(philo))
 			philo_sleep(philo);
-		else
-			pthread_mutex_unlock(philo->lock_print);
 		if (!get_dinning(philo))
 			philo_think(philo);
 		if (philo->nb_philos % 2

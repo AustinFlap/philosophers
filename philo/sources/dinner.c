@@ -6,29 +6,41 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:45:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 05:54:24 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:55:38 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	meal_satsifaction(t_philo *philo, t_dinner *dinner)
+{
+	if (get_satisfaction(philo))
+		dinner->n_satisfied += 1;
+	if (dinner->n_satisfied == dinner->nb_philos)
+	{
+		pthread_mutex_lock(philo->lock_print);
+		set_no_dinning(philo->dinning, philo->lock_dinning);
+		pthread_mutex_unlock(philo->lock_print);
+	}
+	usleep(1);
+}
 
 void	*observer(void *p_dinner)
 {
 	int			i;
 	t_dinner	*dinner;
 	t_philo		*philo;
-	int			n_satisfied;
 
 	dinner = p_dinner;
 	while (!get_dinning(dinner->philos[0]))
 	{
 		i = -1;
-		n_satisfied = 0;
+		dinner->n_satisfied = 0;
 		while (!get_dinning(dinner->philos[0]) && ++i < dinner->nb_philos)
 		{
 			philo = dinner->philos[i];
 			if (ms_since(&philo->last_eat, philo->lock_time)
-				>= (unsigned int)philo->time_to_die && !get_dinning(philo))
+				> (unsigned int)philo->time_to_die && !get_dinning(philo))
 			{
 				pthread_mutex_lock(philo->lock_print);
 				print_msg(philo, " died\n", NULL);
@@ -36,11 +48,7 @@ void	*observer(void *p_dinner)
 				pthread_mutex_unlock(philo->lock_print);
 				return (NULL);
 			}
-			else if (get_satisfaction(philo))
-				n_satisfied++;
-			if (n_satisfied == dinner->nb_philos)
-				set_no_dinning(philo->dinning, philo->lock_dinning);
-			usleep(1);
+			meal_satsifaction(philo, dinner);
 		}
 	}
 	return (NULL);

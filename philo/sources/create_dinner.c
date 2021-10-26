@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:39:24 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 05:27:42 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:40:43 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	create_dinner(t_dinner *dinner)
 		return (1);
 	}
 	dinner->dinning = 0;
+	dinner->n_satisfied = 0;
 	if (set_philos(dinner))
 		return (1);
 	pthread_mutex_init(&dinner->lock, NULL);

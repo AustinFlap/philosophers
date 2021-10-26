@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 18:28:20 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 03:38:36 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:40:17 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_dinner
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					nb_mandatory_eats;
+	int					n_satisfied;
 	int					dinning;
 	struct timeval		start;
 	pthread_mutex_t		lock;

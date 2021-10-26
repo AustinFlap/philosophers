@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 04:14:00 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 05:57:22 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:20:25 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,15 @@ void	ft_putnbr_fd(unsigned int n, int fd)
 
 void	print_msg(t_philo *philo, char *state, pthread_mutex_t *lock)
 {
-	unsigned int	since;
+	int	since;
 
-	since = ms_since(&philo->birth, philo->lock_time);
 	if (lock)
 		pthread_mutex_lock(lock);
 	if (!get_dinning(philo))
+	{
+		since = ms_since(&philo->birth, philo->lock_time);
 		printf("%d %d%s", since, philo->id, state);
+	}
 	if (lock)
 		pthread_mutex_unlock(lock);
 }
