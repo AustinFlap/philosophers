@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:05:56 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 04:28:36 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 04:42:17 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	usleep_ms(int ms, t_philo *philo, struct timeval *start)
 	}
 	while (ms_since(start, philo->lock_time) < (unsigned int)ms
 		&& !get_dinning(philo))
-		usleep(500);
+		usleep(1000);
 }
 
 void	get_time(struct timeval *time, pthread_mutex_t *lock)

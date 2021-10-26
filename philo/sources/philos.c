@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 04:26:50 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 04:44:44 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	death_test(t_philo *philo, pthread_mutex_t *r_f, pthread_mutex_t *l_f)
 
 void	philo_eat(t_philo *philo)
 {	
-	pthread_mutex_lock(philo->lock_print);
-	pthread_mutex_unlock(philo->lock_print);
 	pthread_mutex_lock(philo->lock);
 	pthread_mutex_lock(philo->right_fork);
 	if (death_test(philo, philo->right_fork, NULL))
@@ -52,9 +50,9 @@ void	philo_eat(t_philo *philo)
 		return ;
 	print_msg(philo, " has taken a fork\n", philo->lock_print);
 	print_msg(philo, " is eating\n", philo->lock_print);
+	pthread_mutex_unlock(philo->lock);
 	get_time(&philo->last_eat, philo->lock_time);
 	usleep_ms(philo->time_to_eat, philo, NULL);
-	pthread_mutex_unlock(philo->lock);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	philo->nb_eat++;
