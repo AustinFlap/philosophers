@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 02:59:53 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 03:25:22 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 05:19:47 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	eval_meal(t_philo *philo)
 	if (philo->nb_eat < philo->nb_mandatory_eats
 		|| philo->nb_mandatory_eats == -2)
 		return (1);
+	set_yes_satisfaction(philo);
 	return (0);
 }

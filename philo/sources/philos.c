@@ -6,7 +6,7 @@
 /*   By: avieira <avieira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 21:03:39 by avieira           #+#    #+#             */
-/*   Updated: 2021/10/26 04:44:44 by avieira          ###   ########.fr       */
+/*   Updated: 2021/10/26 05:56:31 by avieira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->lock);
 	get_time(&philo->last_eat, philo->lock_time);
 	usleep_ms(philo->time_to_eat, philo, NULL);
+	pthread_mutex_lock(philo->lock_print);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	philo->nb_eat++;
@@ -60,7 +61,9 @@ void	philo_eat(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
-	print_msg(philo, " is sleeping\n", philo->lock_print);
+	print_msg(philo, " is sleeping\n", NULL);
+	eval_meal(philo);
+	pthread_mutex_unlock(philo->lock_print);
 	gettimeofday(&philo->end_eat, NULL);
 	usleep_ms(philo->time_to_sleep, philo, NULL);
 }
@@ -75,20 +78,20 @@ void	*live(void *p_philo)
 	t_philo	*philo;
 
 	philo = p_philo;
-	while (!get_dinning(philo) && eval_meal(philo))
+	while (!get_dinning(philo))
 	{
-		if (!get_dinning(philo) && eval_meal(philo))
+		if (!get_dinning(philo))
 			philo_eat(philo);
-		if (!get_dinning(philo) && eval_meal(philo))
+		if (!get_dinning(philo))
 			philo_sleep(philo);
-		if (!get_dinning(philo) && eval_meal(philo))
+		else
+			pthread_mutex_unlock(philo->lock_print);
+		if (!get_dinning(philo))
 			philo_think(philo);
 		if (philo->nb_philos % 2
 			&& (int)ms_since(&philo->last_eat, philo->lock_time)
 			+ philo->time_to_eat < philo->time_to_die)
 			usleep_ms(philo->time_to_eat, philo, NULL);
 	}
-	if (!eval_meal(philo))
-		set_yes_satisfaction(philo);
 	return (NULL);
 }
