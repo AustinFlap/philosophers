@@ -1,6 +1,6 @@
 # philosophers
 
-`Philosophers` is a program using `threads` 
+`Philosophers` is a program using `threads` and `mutexs`. 
 
 One or more `philosophers` sit at a round table. The `philosophers` alternatively `eat`, `think`, or `sleep`.
 While they are eating, they are not thinking nor sleeping; while thinking, they are not eating nor sleeping;
